@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+
+- Removed the unsupported `description` field from `manifest.json`. Theme manifests do not support it; that field is plugin-only.
+- Removed a `:has()` selector from the inactive pane fade, flagged as a performance risk by Obsidian's own theme scanner. Focusing a sidebar now dims every pane instead of only the ones not genuinely focused; see the Limits section in the README.
+
 ## 1.1.0
 
 - Added a palette picker. Choose Flexoki, Penumbra, or Tailwind CSS for the heading colors, callout colors, and the active-pane accent.

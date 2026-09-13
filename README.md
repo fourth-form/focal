@@ -30,6 +30,8 @@ Obsidian's Community Themes list does not yet include Focal. Until then, install
 
 Focal needs Obsidian 1.4.0 or later. The tinted active-tab fill uses the CSS function `color-mix()`, which needs this version. Focal has been tested on macOS only; Windows and mobile are not yet tested. To change colors and toggles beyond the defaults, install the Style Settings plugin.
 
+With the inactive pane fade on: if focus moves to a sidebar (file explorer, search) instead of another editor pane, every pane dims at once rather than staying untouched. This trade avoids a broad `:has()` selector, which carries a real performance cost.
+
 ## Privacy
 
 Focal does not send data over the network. Focal does not collect usage data. Focal does not read your notes. Focal does not write files in your vault. Focal changes only the visual style of Obsidian.

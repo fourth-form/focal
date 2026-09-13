@@ -405,12 +405,13 @@ body.ap-fill-tint .workspace-tabs.mod-active {
 
 /* --- Dim unfocused panes ----------------------------------------------- */
 
-/* The :has() guard matters at low opacity: focus often sits in a sidebar
-   (file explorer, search, calendar), and without it NO root pane counts as
-   active, so every editor pane dims at once. Only fade when focus is
-   actually in another root pane. */
+/* No :has(): a broad :has() selector is a real performance risk, and
+   Obsidian's own theme scanner flags it. The tradeoff is that when focus
+   leaves the root splits entirely (a sidebar: file explorer, search),
+   no root tab-group is "mod-active", so every root pane dims at once
+   instead of staying untouched. */
 body.ap-dim-inactive
-	.workspace-split.mod-root:has(.workspace-tabs.mod-active)
+	.workspace-split.mod-root
 	.workspace-tabs:not(.mod-active)
 	.workspace-leaf-content {
 	opacity: var(--ap-dim-opacity);
