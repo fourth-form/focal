@@ -1,0 +1,8 @@
+{
+  "name": "Focal",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Flexoki-colored headings, a focused-tab accent, and an optional fade on inactive panes.",
+  "author": "fourth-form",
+  "authorUrl": "https://github.com/fourth-form"
+}
