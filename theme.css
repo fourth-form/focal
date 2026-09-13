@@ -1,7 +1,9 @@
 /* Focal
-   A minimal accent theme on top of Obsidian's default look:
-   Flexoki-colored headings, a focused-tab accent, and an
-   optional fade on inactive panes. */
+   A minimal accent theme on top of Obsidian's default look: colored
+   headings, callouts, and tags; a focused-tab accent with an optional
+   background wash; and an optional fade on inactive panes. Pick a
+   color palette (Flexoki, Penumbra, or Tailwind CSS), or hand-pick
+   every color yourself. */
 
 /* @settings
 
@@ -14,6 +16,23 @@ settings:
         type: heading
         level: 2
         collapsed: false
+    -
+        id: fh-palette
+        title: Color palette
+        description: Sets the heading colors and the active pane accent together. Any color below can still be hand-picked on top of it.
+        type: class-select
+        allowEmpty: false
+        default: fh-palette-flexoki
+        options:
+            -
+                label: Flexoki
+                value: fh-palette-flexoki
+            -
+                label: Penumbra
+                value: fh-palette-penumbra
+            -
+                label: Tailwind CSS
+                value: fh-palette-tailwind
     -
         id: fh-h1
         title: Heading 1
@@ -123,6 +142,33 @@ settings:
         min: 0.15
         max: 1
         step: 0.05
+    -
+        id: ap-bg-wash
+        title: Active pane background wash
+        description: Faint background tint across the whole focused pane, extending the tab accent.
+        type: class-toggle
+        default: false
+    -
+        id: ap-bg-opacity
+        title: Background wash strength
+        type: variable-number-slider
+        default: 6
+        min: 2
+        max: 20
+        step: 1
+        format: '%'
+    -
+        id: focal-elements-heading
+        title: Elements
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: fh-tag-tint
+        title: Tint tags
+        description: Colors #tags with the active-pane accent instead of Obsidian's default neutral style. Callout colors always follow the palette; there is no separate toggle for them.
+        type: class-toggle
+        default: false
 
 */
 
@@ -152,6 +198,57 @@ settings:
 body {
 	--ap-bar: 3px;
 	--ap-dim-opacity: 0.25;
+	--ap-bg-opacity: 6%;
+}
+
+/* ==========================================================================
+   Palettes
+   fh-palette-flexoki is the default and is set above. These two override
+   it when chosen. Specificity note: "body.fh-palette-x.theme-y" beats the
+   plain ".theme-y" defaults above (two classes vs. one), and a hand-picked
+   color from an individual Style Settings control still wins over both,
+   since Style Settings applies those as an inline style on body.
+   ========================================================================== */
+
+/* --- Penumbra -----------------------------------------------------------
+   Penumbra's accent hues are the same value on light and dark backgrounds
+   by design (github.com/nealmckee/penumbra); only its neutrals change
+   between themes. So this is one rule, not a light/dark pair. */
+body.fh-palette-penumbra {
+	--fh-h1: #CB7459;
+	--fh-h2: #A38F2D;
+	--fh-h3: #46A473;
+	--fh-h4: #00A0BE;
+	--fh-h5: #7E87D6;
+	--fh-h6: #BD72A8;
+	--ap-accent: #BA823A;
+	--ap-fill-text: #24272B;
+}
+
+/* --- Tailwind CSS ---------------------------------------------------------
+   600-weight shades on light backgrounds, 400-weight on dark, matching
+   Tailwind's own light/dark text-color convention. Accent uses violet,
+   the one hue not already spent on a heading. */
+body.fh-palette-tailwind.theme-light {
+	--fh-h1: #E7000B;
+	--fh-h2: #F54900;
+	--fh-h3: #E17100;
+	--fh-h4: #00A63E;
+	--fh-h5: #009689;
+	--fh-h6: #155DFC;
+	--ap-accent: #7F22FE;
+	--ap-fill-text: #FFFFFF;
+}
+
+body.fh-palette-tailwind.theme-dark {
+	--fh-h1: #FF6467;
+	--fh-h2: #FF8904;
+	--fh-h3: #FFB900;
+	--fh-h4: #05DF72;
+	--fh-h5: #00D5BE;
+	--fh-h6: #51A2FF;
+	--ap-accent: #A684FF;
+	--ap-fill-text: #18181B;
 }
 
 /* ==========================================================================
@@ -175,6 +272,64 @@ body {
 
 body.fh-color-inline-title {
 	--inline-title-color: var(--fh-h1);
+}
+
+/* ==========================================================================
+   Callouts
+   Obsidian reads callout color from --callout-color, which accepts any
+   valid CSS color, so it can point straight at the palette variables
+   above. Always on, no toggle, so a callout's color always matches
+   whichever palette is active. Grouped by meaning, not by exact hue
+   match to Obsidian's own defaults: danger/failure/bug read as red,
+   success as green, and so on. Quote is left alone; it is meant to
+   stay quiet. Obsidian maps every alias (e.g. "check", "hint") to one
+   of these primary types, so aliases need no selector of their own.
+   ========================================================================== */
+
+.callout[data-callout="note"],
+.callout[data-callout="info"],
+.callout[data-callout="todo"] {
+	--callout-color: var(--fh-h6);
+}
+
+.callout[data-callout="abstract"],
+.callout[data-callout="tip"] {
+	--callout-color: var(--fh-h5);
+}
+
+.callout[data-callout="success"] {
+	--callout-color: var(--fh-h4);
+}
+
+.callout[data-callout="question"] {
+	--callout-color: var(--fh-h3);
+}
+
+.callout[data-callout="warning"] {
+	--callout-color: var(--fh-h2);
+}
+
+.callout[data-callout="failure"],
+.callout[data-callout="danger"],
+.callout[data-callout="bug"] {
+	--callout-color: var(--fh-h1);
+}
+
+.callout[data-callout="example"] {
+	--callout-color: var(--ap-accent);
+}
+
+/* ==========================================================================
+   Tags
+   Off by default, since it recolors a native element rather than adding
+   a new one. Uses the active-pane accent, so a tag reads as "the same
+   accent" as the rest of the theme instead of getting its own color.
+   ========================================================================== */
+
+body.fh-tag-tint {
+	--tag-color: var(--ap-accent);
+	--tag-background: color-mix(in srgb, var(--ap-accent) 14%, var(--background-primary));
+	--tag-border-color: color-mix(in srgb, var(--ap-accent) 30%, transparent);
 }
 
 /* ==========================================================================
@@ -260,4 +415,18 @@ body.ap-dim-inactive
 	.workspace-leaf-content {
 	opacity: var(--ap-dim-opacity);
 	transition: opacity 120ms ease;
+}
+
+/* --- Background wash -----------------------------------------------------
+   Scoped to .workspace-split.mod-root so a focused sidebar (file explorer,
+   search) never gets this treatment, only an actual editor pane. */
+body.ap-bg-wash
+	.workspace-split.mod-root
+	.workspace-leaf.mod-active
+	.view-content {
+	background-color: color-mix(
+		in srgb,
+		var(--ap-accent) var(--ap-bg-opacity),
+		var(--background-primary)
+	);
 }

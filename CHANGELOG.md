@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+- Added a palette picker. Choose Flexoki, Penumbra, or Tailwind CSS for the heading colors, callout colors, and the active-pane accent.
+- Added palette-driven colors for callouts.
+- Added an optional accent tint for tags.
+- Added an optional background wash for the active pane.
+
 ## 1.0.0
 
 Initial release.

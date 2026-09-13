@@ -1,16 +1,19 @@
 # Focal
 
-Focal is a minimal theme for Obsidian. Focal keeps the layout and the colors of the Default theme. Focal adds three visual effects.
+Focal is a minimal theme for Obsidian. Focal keeps the layout of the Default theme, and colors a small set of elements from one shared palette.
 
 ## Use
 
 Focal adds these effects:
 
-- **Headings.** Focal colors headings H1 through H6 with the Flexoki palette. The colors work in light mode and in dark mode. By default, the note title stays a plain color, so the title reads as a file name, not as a heading.
-- **Active pane.** Focal adds an accent to the tab in your active pane. Choose a bar under the tab, a tinted fill, a solid fill, or text only.
+- **Headings.** Focal colors headings H1 through H6. The colors work in light mode and in dark mode. By default, the note title stays a plain color, so the title reads as a file name, not as a heading.
+- **Callouts.** Focal colors each callout type from the palette. Danger, failure, and bug read as red; warning as orange; question as yellow; success as green; abstract and tip as teal or cyan; note, info, and todo as blue; example as the accent color. Quote keeps Obsidian's own plain style.
+- **Tags.** This effect is optional. It colors `#tags` with the accent color, in place of Obsidian's default neutral style.
+- **Active pane.** Focal adds an accent to the tab in your active pane. Choose a bar under the tab, a tinted fill, a solid fill, or text only. A faint background wash across the whole pane is optional, on top of any of these.
 - **Inactive pane fade.** This effect is optional. It dims the content of panes that are not active.
+- **Palette.** Choose Flexoki (the default), Penumbra, or Tailwind CSS. The palette sets every heading color, every callout color, and the accent color together. You can still hand-pick any single heading or accent color on top of it.
 
-You can change these effects with the Style Settings plugin. Without Style Settings, Focal uses its default colors and choices.
+You can change these effects with the Style Settings plugin. Without Style Settings, Focal uses the Flexoki palette and its other default choices.
 
 ## Install
 
