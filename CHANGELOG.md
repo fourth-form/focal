@@ -4,6 +4,6 @@
 
 Initial release.
 
-- Flexoki-colored headings (H1 through H6), light and dark aware.
-- Accent on the focused pane's active tab: bar, tint, solid fill, or text only.
-- Optional fade on inactive panes.
+- Focal colors headings H1 through H6 with the Flexoki palette. The colors work in light mode and in dark mode.
+- Focal adds an accent to the active tab in the focused pane. Choose a bar, a tint, a solid fill, or text only.
+- Focal can dim inactive panes. This effect is optional.

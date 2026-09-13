@@ -1,44 +1,46 @@
 # Working on Focal
 
-These instructions apply throughout this repository. Follow the user's explicit task instructions and preserve unrelated work.
+Follow these instructions throughout this repository. Follow the user's exact task instructions first. Do not change work that is outside the task.
 
 ## Purpose
 
-A minimal accent theme on top of Obsidian's Default look. Solve this with the smallest understandable CSS. Every rule, variable, and settings entry should serve a concrete visual effect the user asked for.
+Focal is a minimal accent theme. Focal builds on top of Obsidian's Default theme. Use the smallest CSS that a reader can understand. Each rule, variable, and setting must serve one visual effect that the user asked for.
 
 ## Behavioral contract
 
-- Everything not explicitly restyled must render exactly as Obsidian's Default theme.
-- Every color and toggle must work from its hardcoded default with the Style Settings plugin disabled.
-- Disabling Focal (switching to another theme) must leave the vault and its notes unchanged.
-- Do not read note content, write vault files, add telemetry, or make network requests. It is CSS; it has no such access to begin with, keep it that way.
-- Keep limits explicit. Do not claim support for platforms or Obsidian versions that have not been checked.
+- Focal must render exactly like the Default theme, except for the parts Focal explicitly restyles.
+- Each color and toggle must work at its hardcoded default value, even when the Style Settings plugin is disabled.
+- If the user disables Focal, or switches to another theme, the vault and its notes must not change.
+- Do not read note content. Do not write files in the vault. Do not add telemetry. Do not make network requests. Focal is CSS; CSS cannot do these things by default. Keep it that way.
+- State Focal's limits clearly. Do not claim support for a platform or an Obsidian version that has not been checked.
 
 ## Implementation
 
-- Read `theme.css` before changing behavior; it is the only stylesheet.
-- Group related rules under a comment header naming the feature (Headings, Active pane, ...). Keep each feature's variables, defaults, and rules together.
-- Prefer Obsidian's existing CSS variables over new selectors. Add a new class or variable only for a demonstrated need.
-- Keep the `@settings` block (Style Settings) in sync with the variables and classes it exposes; every setting must have a working hardcoded default alongside it.
+- Read `theme.css` before you change its behavior. `theme.css` is the only stylesheet in this project.
+- Group related rules under one comment header. Name the feature in the header, for example Headings or Active pane. Keep each feature's variables, defaults, and rules together.
+- Prefer Obsidian's existing CSS variables over new selectors. Add a new class or variable only when you have a demonstrated need for it.
+- Keep the `@settings` block in sync with the Style Settings plugin. Each setting must expose a real variable or class. Each setting must have a working hardcoded default next to it.
 
 ## Verification
 
-- After a change, load the theme in a real vault (Settings → Appearance → Themes → Focal) and check both light and dark mode.
-- Check the change with Style Settings both installed and not installed.
-- Check panes and tabs in a split, not just a single pane, for anything touching active/inactive state.
+- After a change, load the theme in a real vault. Go to Settings → Appearance → Themes and select Focal. Check the change in light mode and in dark mode.
+- Check the change with the Style Settings plugin installed. Check the change again with Style Settings not installed.
+- If the change touches active or inactive pane state, check it in a split view with more than one pane, not only in a single pane.
 
 ## Writing
 
-- Use familiar words, short explanations, and concrete visual descriptions. Document purpose, usage, installation, limits, privacy, then development.
-- Keep user instructions separate from implementation details. Update documentation when behavior changes.
-- Do not add personal names, machine paths, conversation history, AI attribution, generated-by credits, or promotional author bylines to documentation or release text.
-- Retain author metadata, functional repository links, and required license notices. Do not fabricate authorship or remove required third-party attribution.
-- Avoid unsolicited co-author trailers. Use the project's configured public identity for commits and never infer it from a machine username.
+- Use plain words and short sentences. Describe visual effects in concrete terms. Document the parts in this order: purpose, use, install, limits, privacy, then develop.
+- Keep instructions for the user separate from notes for developers. Update the documentation whenever behavior changes.
+- Do not add personal names, machine file paths, or chat history to the documentation or to release text.
+- Do not add AI attribution or "generated by" credits to the documentation or to release text.
+- Do not add a promotional author byline to the documentation or to release text.
+- Keep the author field, the working repository links, and the required license notice. Do not invent an author. Do not remove a required attribution to a third party.
+- Do not add a co-author line to a commit unless the user asks for one. Use the project's public identity for each commit. Do not guess this identity from a machine username.
 
 ## Releases
 
-- Keep experiments local or private; publish reviewed release snapshots.
-- Version changes and publication must fall within the user's requested task. Existing explicit authorization is sufficient; do not repeatedly ask for approval.
-- Before publication, check staged files and commit metadata for private data and unintended history. Never rewrite published history without explicit authorization.
-- Keep manifest, changelog, release tag, and release assets consistent.
-- Report GitHub publication and Obsidian directory acceptance separately. A submission is not an accepted listing.
+- Keep unfinished work private or local. Publish only a release that has been reviewed.
+- A version change or a publish action must be part of the user's current task. If the user already gave permission for this task, do not ask again.
+- Before publication, check the staged files and the commit metadata for private data or unintended history. Do not rewrite published history unless the user asks for it.
+- Keep the manifest, the changelog, the release tag, and the release assets consistent with each other.
+- Report two things separately: a GitHub publication, and acceptance into the Obsidian directory. A submission is not the same as an accepted listing.

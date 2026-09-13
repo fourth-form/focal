@@ -1,35 +1,40 @@
 # Focal
 
-A minimal Obsidian theme. Leaves the Default theme's layout and colors alone; adds three things.
+Focal is a minimal theme for Obsidian. Focal keeps the layout and the colors of the Default theme. Focal adds three visual effects.
 
 ## Use
 
-- **Headings**: H1 through H6 colored with the Flexoki palette, light and dark aware. The inline note title stays neutral by default, so it reads as a filename, not a heading.
-- **Active pane**: the tab in your focused pane gets an accent, as a bar under the tab, a tinted fill, a solid fill, or text only.
-- **Inactive pane fade**: optional, dims the content of panes that don't have focus.
+Focal adds these effects:
 
-All three are configurable through the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin. Without it, the defaults above still apply.
+- **Headings.** Focal colors headings H1 through H6 with the Flexoki palette. The colors work in light mode and in dark mode. By default, the note title stays a plain color, so the title reads as a file name, not as a heading.
+- **Active pane.** Focal adds an accent to the tab in your active pane. Choose a bar under the tab, a tinted fill, a solid fill, or text only.
+- **Inactive pane fade.** This effect is optional. It dims the content of panes that are not active.
+
+You can change these effects with the Style Settings plugin. Without Style Settings, Focal uses its default colors and choices.
 
 ## Install
 
-Manual install until this is listed in Obsidian's Community Themes:
+Obsidian's Community Themes list does not yet include Focal. Until then, install Focal by hand:
 
-1. Download `manifest.json` and `theme.css` from the [latest release](https://github.com/fourth-form/focal/releases/latest).
-2. Create `.obsidian/themes/Focal/` inside your vault and copy both files into it.
-3. Restart Obsidian and select **Focal** in Settings → Appearance → Themes.
+1. Go to the [latest release](https://github.com/fourth-form/focal/releases/latest).
+2. Download `manifest.json` and `theme.css`.
+3. In your vault, create the folder `.obsidian/themes/Focal/`.
+4. Copy both files into that folder.
+5. Restart Obsidian.
+6. Open Settings → Appearance → Themes. Select **Focal**.
 
 ## Limits
 
-Requires Obsidian 1.4.0 or later (the tinted active-tab fill uses `color-mix()`). Tested on macOS; Windows and mobile are not yet tested. Configuring colors and toggles beyond the shipped defaults requires the Style Settings plugin.
+Focal needs Obsidian 1.4.0 or later. The tinted active-tab fill uses the CSS function `color-mix()`, which needs this version. Focal has been tested on macOS only; Windows and mobile are not yet tested. To change colors and toggles beyond the defaults, install the Style Settings plugin.
 
 ## Privacy
 
-No network requests, telemetry, note-content access, or vault-file writes. Focal changes visual styling only.
+Focal does not send data over the network. Focal does not collect usage data. Focal does not read your notes. Focal does not write files in your vault. Focal changes only the visual style of Obsidian.
 
 ## Develop
 
-Plain CSS, no build step. Edit `theme.css` directly.
+Focal is plain CSS with no build step. To change Focal, edit `theme.css` directly.
 
 ## License
 
-[MIT](LICENSE)
+Focal uses the MIT license. See [LICENSE](LICENSE).
